@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - Role Play Project{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}"> <!-- Corrected with quotes -->
+
+<!-- Hero Section -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Role Play Project</h1>
+        <p class="lead">Immerse yourself in creative storytelling and collaborative adventures.</p>
+        <a href="{% url 'session' %}" class="btn btn-primary hero-btn">Get Started</a>
+    </div>
+    <div class="hero-image">
+        <img src="{% static 'images/hero_img.jpg' %}" alt="Hero Section Image">
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="features">
+    <div class="feature-item">
+        <i class="bi bi-people-fill"></i>
+        <h3>Collaborate</h3>
+        <p>Join teams and create exciting role-playing scenarios together.</p>
+    </div>
+    <div class="feature-item">
+        <i class="bi bi-pencil-fill"></i>
+        <h3>Customize</h3>
+        <p>Build characters, worlds, and unique storylines effortlessly.</p>
+    </div>
+    <div class="feature-item">
+        <i class="bi bi-star-fill"></i>
+        <h3>Achieve</h3>
+        <p>Unlock achievements and make your mark in the community.</p>
+    </div>
+</div>
+{% endblock %}

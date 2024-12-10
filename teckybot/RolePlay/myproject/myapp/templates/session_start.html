@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Session Started{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between">
+        <h1>Session Started</h1>
+        <div>
+            <strong>Welcome, {{ username }}</strong>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-8">
+            <div class="text-center mb-4">
+                <img src="{% static 'images/interviewer.jpeg' %}" alt="Role Play Image" class="img-fluid rounded" style="max-width: 400px;">
+            </div>
+
+            <div class="mb-4">
+                <h3>Question:</h3>
+                <p>{{ current_question }}</p>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="text" name="answer" class="form-control" placeholder="Type your answer here..." required>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            <aside>
+                <h4>Session Log</h4>
+                <div class="border p-3" style="height: 400px; overflow-y: auto;">
+                    {% for qa in session_log %}
+                        <p><strong>Q:</strong> {{ qa.question }}</p>
+                        <p><strong>A:</strong> {{ qa.answer }}</p>
+                        <hr>
+                    {% endfor %}
+
+                </div>
+                {% if session_completed %}
+                 <a href="{% url 'generate_report' %}" class="btn btn-primary">End Session</a>
+                {% endif %}
+            </aside>
+        </div>
+    </div>
+</div>
+{% endblock %}
